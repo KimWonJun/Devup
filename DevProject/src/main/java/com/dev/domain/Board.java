@@ -2,26 +2,24 @@ package com.dev.domain;
 
 import java.time.LocalDateTime;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @NoArgsConstructor
+@AllArgsConstructor
+@Data
 @RequiredArgsConstructor
-@Getter
-@Setter
-@EqualsAndHashCode(of="boardNo")
-@ToString
+@Builder
 public class Board implements java.io.Serializable
 {
 //	private static final long serialVersionUID = 1L;
-	
-	private int boardNo;
+
 	@NonNull
+	private int boardNo;
 	private String title;
 	private String content;
 	private String writer;
