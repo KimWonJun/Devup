@@ -16,12 +16,11 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class HomeController 
 {
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@GetMapping("/")
 	public String home(Locale locale, Model model)
 	{
-		logger.info("Welcome home! The client locale is {}.", locale);
+		log.info("Welcome home! The client locale is {}.", locale);
 		
 		LocalDateTime now = LocalDateTime.now();
 		
@@ -31,6 +30,12 @@ public class HomeController
 		model.addAttribute("serverTime", formattedNow);
 		
 		return "home";
+	}
+	
+	@GetMapping("/ajaxHome")
+	public String ajaxHome()
+	{
+		return "ajaxHome";
 	}
 	
 	
