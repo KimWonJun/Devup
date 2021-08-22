@@ -348,6 +348,205 @@ $(document).ready(function(){
 			}
 		});
 	});
+	
+	$("#registerBtn02").on("click", function()
+	{
+		$.ajax({
+			type:"GET",
+			url:"/boards/register02",
+			contentType:"application/json; charset=UTF-8",
+			success:function(data){
+				console.log("data : " + data);
+				alert(JSON.stringify(data));
+			},
+			erorr:function(xhr, status, error)
+			{
+				alert("code : " + xhr.status + "\n"
+					+ "message : " + xhr.responseText + "\n"
+					+ "error : " + error);
+			}
+		});
+	});
+	
+	$("#registerBtn03").on("click", function()
+	{
+		$.ajax({
+			type:"GET",
+			url:"/boards/register03",
+			contentType:"application/json; charset=UTF-8",
+			success:function(data)
+			{
+				console.log("data : " + data);
+				alert(JSON.stringify(data));
+			},
+			error:function(xhr, status, error)
+			{
+				alert("code : " + xhr.status + "\n"
+					+ "message : " + xhr.responseText + "\n"
+					+ "error : " + error);
+			}
+		});
+	});
+	
+	$("#registerBtn04").on("click", function()
+	{
+		$.ajax({
+			type:"GET",
+			url:"/boards/register04",
+			contentType:"application/json; charset=UTF-8",
+			success:function(data)
+			{
+				console.log("data : " + data);
+				alert(JSON.stringify(data));
+			},
+			error:function(xhr, status, error)
+			{
+				alert("code : " + xhr.status + "\n"
+					+ "message : " + xhr.responseText + "\n"
+					+ "error : " + error);
+			}
+		});
+	});
+	
+	$("#registerBtn05").on("click", function()
+	{
+		$.ajax({
+			type:"GET",
+			url:"/boards/register05",
+			contentType:"application/json; charset=UTF-8",
+			success:function(data)
+			{
+				console.log("data : " + data);
+				alert(JSON.stringify(data));
+			},
+			error:function(xhr, status, error)
+			{
+				alert("code : " + xhr.status + "\n"
+					+ "message : " + xhr.responseText + "\n"
+					+ "error : " + error);
+			}
+		});
+	});
+	
+	$("#registerBtn06").on("click", function()
+	{
+		$.ajax({
+			type:"GET",
+			url:"/boards/register06",
+			contentType:"application/json; charset=UTF-8",
+			success:function(data)
+			{
+				console.log("data : " + data);
+				alert(JSON.stringify(data));
+			},
+			error:function(xhr, status, error)
+			{
+				alert("code : " + xhr.status + "\n"
+					+ "message : " + xhr.responseText + "\n"
+					+ "error : " + error);
+			}
+		});
+	});
+	
+	$("#registerBtn07").on("click", function()
+	{
+		$.ajax({
+			type:"GET",
+			url:"/boards/register07",
+			contentType:"application/json; charset=UTF-8",
+			success:function(data)
+			{
+				console.log("data : " + data);
+				alert(JSON.stringify(data));
+			},
+			error:function(xhr, status, error)
+			{
+				alert("code : " + xhr.status + "\n"
+					+ "message : " + xhr.responseText + "\n"
+					+ "error : " + error);
+			}
+		});
+	});
+	
+	$("#registerBtn08").on("click", function()
+	{
+		$.ajax({
+			type:"GET",
+			url:"/boards/register08",
+			contentType:"application/json; charset=UTF-8",
+			success:function(data)
+			{
+				console.log("data : " + data);
+				alert(JSON.stringify(data));
+			},
+			error:function(xhr, status, error)
+			{
+				alert("code : " + xhr.status + "\n"
+					+ "message : " + xhr.responseText + "\n"
+					+ "error : " + error);
+			}
+		});
+	});
+	
+	$("#registerBtn09").on("click", function()
+	{
+		$.ajax({
+			type:"GET",
+			url:"/boards/register09",
+			contentType:"application/json; charset=UTF-8",
+			success:function(data)
+			{
+				console.log("data : " + data);
+				alert(JSON.stringify(data));
+			},
+			error:function(xhr, status, error)
+			{
+				alert("code : " + xhr.status + "\n"
+					+ "message : " + xhr.responseText + "\n"
+					+ "error : " + error);
+			}
+		});
+	});
+		
+	$("#registerBtn10").on("click", function()
+	{
+		$.ajax({
+			type:"GET",
+			url:"/boards/register10",
+			contentType:"application/json; charset=UTF-8",
+			success:function(data)
+			{
+				console.log("data : " + data);
+				alert(JSON.stringify(data));
+			},
+			error:function(xhr, status, error)
+			{
+				alert("code : " + xhr.status + "\n"
+					+ "message : " + xhr.responseText + "\n"
+					+ "error : " + error);
+			}
+		});
+	});
+	
+	$("#registerBtn11").on("click", function()
+	{
+		$.ajax({
+			type:"GET",
+			url:"/boards/register11",
+			contentType:"application/json; charset=UTF-8",
+			success:function(data)
+			{
+				console.log("data : " + data);
+				alert(JSON.stringify(data));
+			},
+			error:function(xhr, status, error)
+			{
+				alert("code : " + xhr.status + "\n"
+					+ "message : " + xhr.responseText + "\n"
+					+ "error : " + error);
+			}
+		});
+	});
 });
 </script>
 
@@ -385,6 +584,16 @@ $(document).ready(function(){
 	
 	<div>
 		<button id="registerBtn01">registerBtn01</button>
+		<button id="registerBtn02">registerBtn02</button>
+		<button id="registerBtn03">registerBtn03</button>
+		<button id="registerBtn04">registerBtn04</button>
+		<button id="registerBtn05">registerBtn05</button>
+		<button id="registerBtn06">registerBtn06</button>
+		<button id="registerBtn07">registerBtn07</button>
+		<button id="registerBtn08">registerBtn08</button>
+		<button id="registerBtn09">registerBtn09</button>
+		<button id="registerBtn10">registerBtn10</button>
+		<button id="registerBtn11">registerBtn11</button>
 	</div>
 </body>
 </html>

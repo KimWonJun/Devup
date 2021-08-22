@@ -1,8 +1,17 @@
 package com.dev.controller;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.io.IOUtils;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dev.domain.Board;
+import com.dev.domain.Member;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -193,6 +203,140 @@ public class BoardController
 	public void register01()
 	{
 		log.info("register01");
+	}
+	
+	@GetMapping("/register02")
+	public String register02()
+	{
+		log.info("register02");
+		return "HELLO";
+	}
+	
+	@GetMapping("/register03")
+	public Member register03()
+	{
+		log.info("register03");
+		
+		Member member = new Member("hongkd", "1234");
+		return member;
+	}
+	
+	@GetMapping("/register04")
+	public List<Member> register04()
+	{
+		log.info("register04");
+		
+		List<Member> list = new ArrayList<Member>();
+		
+		Member member = new Member("유저1", "1125");
+		list.add(member);
+		
+		Member member2 = new Member("유저2", "2234");
+		list.add(member2);
+		
+		return list;
+	}
+	
+	@GetMapping("/register05")
+	public Map<String, Member> register05()
+	{
+		log.info("register05");
+		
+		Map<String, Member> map = new HashMap<String, Member>();
+		
+		Member member1 = new Member("유저1", "1125");
+		map.put("key1", member1);
+		
+		Member member2 = new Member("유저2", "1532");
+		map.put("key2", member2);
+		
+		return map;
+	}
+	
+	@GetMapping("/register06")
+	public ResponseEntity<Void> register06()
+	{
+		log.info("register06");
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
+	@GetMapping("/register07")
+	public ResponseEntity<String> register07()
+	{
+		log.info("register07");
+		return new ResponseEntity<String>("HELLO", HttpStatus.OK);
+	}
+	
+	@GetMapping("/register08")
+	public ResponseEntity<Member> register08()
+	{
+		log.info("register08");
+		Member member = new Member("유저3", "3333");
+		return new ResponseEntity<Member>(member, HttpStatus.OK);
+	}
+	
+	@GetMapping("/register09")
+	public ResponseEntity<List<Member>> register09()
+	{
+		log.info("register09");
+
+		List<Member> list = new ArrayList<Member>();
+		
+		Member member1 = new Member("유저1", "1125");
+		list.add(member1);
+		
+		Member member2 = new Member("유저2", "1532");
+		list.add(member2);
+		
+		return new ResponseEntity<List<Member>>(list, HttpStatus.OK);
+	}
+	
+	@GetMapping("/register10")
+	public ResponseEntity<Map<String, Member>> register10()
+	{
+		log.info("register10");
+
+		Map<String, Member> map = new HashMap<String, Member>();
+		
+		Member member1 = new Member("유저1", "1125");
+		map.put("key1", member1);
+		
+		Member member2 = new Member("유저2", "1532");
+		map.put("key2", member2);
+		
+		return new ResponseEntity<Map<String, Member>>(map, HttpStatus.OK);
+	}
+	
+	@GetMapping("/register11")
+	public ResponseEntity<byte[]> register11() throws Exception
+	{
+		log.info("register11");
+		
+		String fileName = "data.zip";
+		
+		InputStream in = null;
+		ResponseEntity<byte[]> entity = null;
+		
+		try
+		{
+			HttpHeaders headers = new HttpHeaders();
+			
+			in = new FileInputStream("C:\\TEMP\\" + fileName);
+			
+			headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+			headers.add("Content-Disposition",  "attachment; filename=\""+ new String(fileName.getBytes("UTF-8"), "ISO-8859-1") + "\"");
+			
+			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+		}
+		finally {
+			in.close();
+		}
+		return entity;
 	}
 }
 
