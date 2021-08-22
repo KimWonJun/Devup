@@ -11,7 +11,7 @@
 $(document).ready(function(){
 	
 	$("#listBtn").on("click",function(){
-		$.get("/boards", function(data){
+		$.get("/boards/list", function(data){
 			console.log(data);
 			
 			alert(JSON.stringify(data));
@@ -19,18 +19,21 @@ $(document).ready(function(){
 	});
 	
 	$("#readBtn").on("click", function(){
-		var boardNo = $("#boardNo");
-		var boardNoVal = boardNo.val();
-		
-		console.log(boardNoVal);
-		
-		$.get("/boards/" + boardNoVal, function(data){
+		$.get("/boards/read/100", function(data){
 			console.log(data);
 			
 			alert(JSON.stringify(data));
 		});
 	});
 	
+	$("#readBtn2").on("click", function(){
+		$.get("/boards/read2/100", function(data){
+			console.log(data);
+			alert(JSON.stringify(data));
+		});
+	});
+	
+	/*
 	$("#registerBtn").on("click", function(){
 		var title = $("#title");
 		var content = $("#content");
@@ -62,6 +65,7 @@ $(document).ready(function(){
 			}
 		});
 	});
+	*/
 	
 	$("#deleteBtn").on("click", function(){
 		var boardNo = $("#boardNo");
@@ -79,6 +83,7 @@ $(document).ready(function(){
 		});
 	});
 	
+	/*
 	$("#modifyBtn").on("click", function(){
 		var boardNo = $("#boardNo");
 		var title = $("#title");
@@ -108,24 +113,278 @@ $(document).ready(function(){
 			}
 		});
 	});
+	*/
+	
+	$("#getJsonBtn").on("click", function(){
+		var boardNo = $("#boardNo");
+		var boardNoVal = boardNo.val();
+		
+		console.log(boardNoVal);
+		
+		$.getJSON("/boards/" + boardNoVal, function(data){
+			console.log(data);
+			alert(JSON.stringify(data));
+		});
+	});
+	
+	$("#postBtn").on("click", function(){
+		var title = $("#title");
+		var content = $("#content");
+		var writer = $("#writer");
+		
+		var titleVal = title.val();
+		var contentVal = content.val();
+		var writerVal = writer.val();
+		
+		var boardObject = {
+			title:titleVal,
+			content:contentVal,
+			writer:writerVal
+		};
+		
+		$.ajax({
+			type:"POST",
+			url:"/boards",
+			data:JSON.stringify(boardObject),
+			contentType:"application/json; charset=UTF-8",
+			success:function(result){
+				console.log("result : " + result);
+				alert(result);
+			},
+			error:function(request, status, error){
+				alert("code : " + request.status + "\n"
+					 + "message : " + request.responseText
+					 + "\n" + "error : " + error);
+			}
+		});
+	});
+	
+	$("#ajaxBtn").on("click", function(){
+		var title = $("#title");
+		var content = $("#content");
+		var writer = $("#writer");
+		
+		var titleVal = title.val();
+		var contentVal = content.val();
+		var writerVal = writer.val();
+		
+		var boardObject = {
+			title:titleVal,
+			content:contentVal,
+			writer:writerVal
+		};
+		
+		$.ajax({
+			type:"POST",
+			url:"/boards",
+			data:JSON.stringify(boardObject),
+			contentType:"application/json; charset=UTF-8",
+			success:function(data){
+				console.log("data : " + data);
+				alert(data);
+			},
+			error:function(request, status, error){
+				alert("code : " + request.status + "\n"
+					+ "message : " + request.responseText + "\n"
+					+ "error : " + error);
+			}
+		});
+	});
+	
+	$("#registerBtn").on("click", function(){
+		$.get("/boards/register", function(data){
+			console.log(data);
+			alert(JSON.stringify(data));
+		});
+	});
+	
+	$("#modifyBtn").on("click", function(){
+		$.get("/boards/modify", function(data){
+			console.log(data);
+			alert(JSON.stringify(data));
+		});
+	});
+	
+	$("#getBtn").on("click", function(){
+		var boardNo = $("#boardNo");
+		var boardNoVal = boarNo.val();
+		
+		console.log(baordNoVal);
+		
+		$.get("/boards/" + boardNoVal, function(data){
+			console.log(data);
+			alert(JSON.stringify(data));
+		});
+	});
+	
+	$("#patchBtn").on("click", function(){
+		var boardNo = $("#boardNo");
+		var title = $("#title");
+		var content = $("#content");
+		var writer = $("#writer");
+		
+		var boardNoVal = boardNo.val();
+		var titleVal = title.val();
+		var contentVal = content.val();
+		var writerVal = writer.val();
+		
+		var boardObject = {
+			boardNo : boardNoVal,
+			title : titleVal,
+			content : contentVal,
+			writer : writerVal
+		};
+		
+		$.ajax({
+			type:"PATCH",
+			url:"/boards/" + boardNoVal,
+			data: JSON.stringify(boardObject),
+			contentType:"application/json; charset=UTF-8",
+			success:function(result){
+				console.log("result  " + result);
+				alert(result);
+			}
+		});
+	});
+	
+	$("#putHeaderBtn").on("click", function(){
+		var boardNo = $("#boardNo");
+		var title = $("#title");
+		var content = $("#content");
+		var writer = $("#writer");
+		
+		var boardNoVal = boardNo.val();
+		var titleVal = title.val();
+		var contentVal = content.val();
+		var writerVal = writer.val();
+		
+		var boardObject = {
+			boardNo : boardNoVal,
+			title : titleVal,
+			content : contentVal,
+			writer : writerVal
+		};
+		
+		$.ajax({
+			type:"PUT",
+			url:"/boards/" + boardNoVal,
+			headers:{
+				"X-HTTP-Method-Override" : "PUT"
+			},
+			data:JSON.stringify(boardObject),
+			contentType:"application/json; charset=UTF-8",
+			success:function(result){
+				console.log("result : " + result);
+				alert(result);
+			}
+		});
+	});
+	
+	$("#putXmlBtn").on("click", function(){
+		var boardNo = $("#boardNo");
+		var title = $("#title");
+		var content = $("#content");
+		var writer = $("#writer");
+		
+		var boardNoVal = boardNo.val();
+		var titleVal = title.val();
+		var contentVal = content.val();
+		var writerVal = writer.val();
+		
+		var xmlData = "<Board>";
+		xmlData += "<boardNo>0</boardNo>";
+		xmlData += "<title>title1</title>";
+		xmlData += "<content>content0</content>";
+		xmlData += "<writer>writer1</writer>";
+		xmlData += "</Board>";
+		
+		$.ajax({
+			type:"PUT",
+			url:"/boards/" + boardNoVal,
+			data:xmlData,
+			contentType:"application/xml; charset=UTF-8",
+			success:function(result){
+				console.log("result : " + result);
+				alert(result);
+			}
+		});
+	});
+	
+	$("#getJsonBtn").on("click", function(){
+		var boardNo = $("#boardNo");
+		var boardNoVal = boardNo.val();
+		
+		console.log(boardNoVal);
+		
+		$.ajax({
+			type:"get",
+			url:"/boards/" + boardNoVal,
+			header:{
+				"Accept":"application/json"
+			},
+			success:function(result){
+				console.log("result : " + result);
+				alert(JSON.stringify(result));
+			}
+		});
+	});
+	
+	$("#registerBtn01").on("click", function()
+	{
+		$.ajax({
+			type:"GET",
+			url:"/boards/register01",
+			contentType:"application/json; charset=UTF-8",
+			success:function(data)
+			{
+				console.log("data : " + data);
+				alert(JSON.stringify(data));
+			},
+			error:function(xhr, status, error)
+			{
+				alert("code : " + xhr.status + "\n"
+					+ "message : " + xhr.responseText + "\n"
+					+ "error : " + error);	
+			}
+		});
+	});
 });
 </script>
 
 <body>
 	<h1>Ajax home</h1>
 	<form>
-		boardNo : <inputType="text" name="boardNo" value="" id="boardNo"><br>
-		title : <inputType="text" name="title" value="" id="title"><br>
-		content : <inputType="text" name="content" value="" id="content"><br>
-		writer : <inputType="text" name="writer" value="" id="writer"><br>
+		boardNo : <input type="text" name="boardNo" value="" id="boardNo"><br>
+		title : <input type="text" name="title" value="" id="title"><br>
+		content : <input type="text" name="content" value="" id="content"><br>
+		writer : <input type="text" name="writer" value="" id="writer"><br>
 	</form>
 	
 	<div>
 		<button id="listBtn">LIST<button>
 		<button id="readBtn">READ<button>
+		<button id="readBtn2">READ2<button>
 		<button id="registerBtn">REGISTER<button>
 		<button id="deleteBtn">DELETE<button>
 		<button id="modifyBtn">MODIFY<button>
+	</div>
+	
+	<div>
+		<button id="getJsonBtn">getJson</button>
+		<button id="postBtn">post</button>
+		<button id="ajaxBtn">ajax</button>
+		<button id="getBtn">get</button>
+		<button id="patchBtn">patch</button>
+	</div>
+	
+	<div>
+		<button id="putHeaderBtn">putHeader</button>
+		<button id="putXmlBtn">putXmlBtn</button>
+		<button id="getJsonBtn">getJsonBtn</button>
+	</div>
+	
+	<div>
+		<button id="registerBtn01">registerBtn01</button>
 	</div>
 </body>
 </html>
