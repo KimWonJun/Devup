@@ -1,0 +1,134 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Home</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$("#registerBtn02").on("click", function(){
+		var userId = $("#userId");
+		var password = $("#password");
+		
+		var userIdVal = userId.val();
+		var passwordVal = password.val();
+		
+		var userObject = {
+			userId : userIdVal,
+			password : passwordVal
+		};
+		
+		$.ajax({
+			type:"POST",
+			url:"/register/hongkd/pw01",
+			data:JSON.stringify(userObject),
+			contetnType:"application/json; charset=UTF-8",
+			success:function(result){
+				console.log("result : " + result);
+				alert(result);
+			}
+		});
+	});
+});
+</script>
+
+<body>
+	<h1>register Form</h1>
+	<form>
+		userId : <input type="text" name="userId" value="" id="userId"><br>
+		password : <input type="text" name="password" value="" id="password"><br>
+	</form>
+	
+	<div>
+		<button id="registerBtn01">registerBtn01</button>
+		<button id="registerBtn02">registerBtn02</button>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
