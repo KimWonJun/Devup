@@ -38,5 +38,10 @@ public class HomeController
 		return "ajaxHome";
 	}
 	
-	
+	@GetMapping("/registerForm")
+	public String registerForm()
+	{
+		log.info("registerForm");
+		return "registerForm";
+	}
 }
