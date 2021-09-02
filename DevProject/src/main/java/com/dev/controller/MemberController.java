@@ -1,17 +1,16 @@
 package com.dev.controller;
 
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dev.domain.Address;
 import com.dev.domain.Card;
 import com.dev.domain.Member;
 
@@ -21,12 +20,15 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 public class MemberController 
 {
-	@GetMapping("/register/{userId}")
-	public ResponseEntity<String> register01(@PathVariable("userId") String userId)
+	@PostMapping("/register01")
+	public ResponseEntity<String> register01(@RequestBody Member member)
 	{
 		log.info("register01");
 		
-		log.info("userId = " + userId);
+		log.info("userId = " + member.getUserId());
+		log.info("password : " + member.getPassword());
+		
+		log.info("member.getDateOfBirth() = " + member.getDateOfBirth());
 		
 		ResponseEntity<String> entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		
@@ -34,16 +36,17 @@ public class MemberController
 	}
 	
 	@PostMapping("/register02")
-	public ResponseEntity<String> register02(@RequestBody List<Member> memberList)
+	public ResponseEntity<String> register02(@RequestBody Member member)
 	{
 		log.info("register02");
-
-		for(Member member : memberList)
-		{
-			log.info("userId : " + member.getUserId());
-			log.info("password : " + member.getPassword());
-		}
+		
+		log.info("userId = " + member.getUserId());
+		log.info("password : " + member.getPassword());
+		
+		log.info("member.getDateOfBirth() = " + member.getDateOfBirth());
+		
 		ResponseEntity<String> entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		
 		return entity;
 	}
 	
@@ -53,22 +56,12 @@ public class MemberController
 		log.info("register03");
 		
 		log.info("userId = " + member.getUserId());
-		log.info("password = " + member.getPassword());
+		log.info("password : " + member.getPassword());
 		
-		Address address = member.getAddress();
-		
-		if(address != null) 
-		{
-			log.info("postcode : " + address.getPostCode());
-			log.info("location : " + address.getLocation());
-		}
-		else 
-		{
-			log.info("address == null");
-		}
+		log.info("member.getDateOfBirth() = " + member.getDateOfBirth());
 		
 		ResponseEntity<String> entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
-				
+		
 		return entity;
 	}
 	
@@ -101,5 +94,24 @@ public class MemberController
 		ResponseEntity<String> entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		
 		return entity;
+	}
+	
+	@GetMapping("/read")
+	public ResponseEntity<Member> read()
+	{
+		log.info("register");
+		
+		Member member = new Member();
+		member.setUserId("hongkd");
+		member.setPassword("1234");
+		
+		Calendar cal = Calendar.getInstance();
+		
+		LocalDate dateOfBirth = LocalDate.of(1999,  5, 20);
+		member.setDateOfBirth(dateOfBirth);
+		
+		member.setDateOfBirth(dateOfBirth);
+		
+		return new ResponseEntity<Member>(member, HttpStatus.OK);
 	}
 }
