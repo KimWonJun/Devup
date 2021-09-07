@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.dev.domain.Card;
 import com.dev.domain.Member;
@@ -113,5 +114,17 @@ public class MemberController
 		member.setDateOfBirth(dateOfBirth);
 		
 		return new ResponseEntity<Member>(member, HttpStatus.OK);
+	}
+	
+	@PostMapping(value="/upload", produces = "text/plain; charset=UTF-8")
+	public ResponseEntity<String> upload(MultipartFile file) throws Exception
+	{
+		String originalFilename = file.getOriginalFilename();
+		
+		log.info("originalName : " + originalFilename);
+		
+		ResponseEntity<String> entity = new ResponseEntity<String>("UPLOAD SUCCESS " + originalFilename, HttpStatus.OK);
+		
+		return entity;
 	}
 }

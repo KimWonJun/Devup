@@ -128,6 +128,31 @@ $(document).ready(function(){
 			}
 		});
 	});
+	
+	$("#inputFile").on("change", function(event){
+		console.log("change");
+		
+		var files = event.target.files;
+		var file = files[0];
+		
+		console.log(file);
+		
+		var formData = new FormData();
+		
+		formData.append("file", file);
+		
+		$.ajax({
+			type:"post",
+			url:"/upload",
+			data:formData,
+			dataType:'text',
+			processData:false,
+			contentType:false,
+			success:function(data){
+				alert(data);
+			}
+		});
+	});
 });
 </script>
 
@@ -143,6 +168,10 @@ $(document).ready(function(){
 		<button id="registerBtn02">registerBtn02(yyyyMMdd)</button>
 		<button id="registerBtn03">registerBtn03(yyyy-MM-dd)</button>
 		<button id="registerBtn04">registerBtn04(read)</button>
+	</div>
+	
+	<div>
+		<input type="file" id="inputFile">
 	</div>
 </body>
 </html>
