@@ -38,6 +38,12 @@ public class HomeController
 		return "ajaxHome";
 	}
 	
+	@GetMapping("/ajaxHome2")
+	public String ajaxHome2()
+	{
+		return "ajaxHome2";
+	}
+	
 	@GetMapping("/registerForm")
 	public String registerForm()
 	{
