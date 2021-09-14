@@ -10,15 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.dev.domain.Board2;
 import com.dev.service.Board2Service;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@RequiredArgsConstructor
 @Controller
 @RequestMapping("/board2")
 public class Board2Controller 
 {
 	@Autowired
-	private Board2Service service;
+	private final Board2Service service;
 	
 	@GetMapping("/register")
 	public void registerform(Board2 board, Model model) throws Exception

@@ -1,6 +1,8 @@
 package com.dev;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.swing.tree.RowMapper;
@@ -11,11 +13,14 @@ import org.springframework.stereotype.Repository;
 import com.dev.domain.Board;
 import com.dev.domain.Board2;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Repository
 public class Board2DAO 
 {
 	@Autowired
-	private JdbcTemplate jdbcTemplate;
+	private final JdbcTemplate jdbcTemplate;
 	
 	public void create(Board2 board) throws Exception 
 	{

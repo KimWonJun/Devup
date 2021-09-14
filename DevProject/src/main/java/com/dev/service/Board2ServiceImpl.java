@@ -8,11 +8,14 @@ import org.springframework.stereotype.Service;
 import com.dev.Board2DAO;
 import com.dev.domain.Board2;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Service
 public class Board2ServiceImpl implements Board2Service 
 {
 	@Autowired
-	private Board2DAO dao;
+	private final Board2DAO dao;
 	
 	@Override
 	public void register(Board2 board) throws Exception 
