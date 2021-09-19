@@ -2,32 +2,81 @@ package com.dev.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import com.dev.dao.mapper.BoardMapper;
 import com.dev.domain.Board;
-import com.dev.repository.BoardRepository;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Service
 public class BoardServiceImpl implements BoardService
 {
-	@Autowired
-	private BoardRepository boardRepository;
+//	@Autowired
+//	private BoardDAO dao;
+//	
+//	@Override
+//	@Transactional(readOnly=true)
+//	public List<Board> list() throws Exception
+//	{
+//		return dao.list();
+//	}
+//	
+//	@Override
+//	public Board read(Long boardNo) throws Exception
+//	{
+//		return dao.read(boardNo);
+//	}
+//	
+//	@Override
+//	@Transactional
+//	public void register(Board board) throws Exception
+//	{
+//		dao.create(board);
+//	}
+//	
+//	@Override
+//	public void modify(Board board) throws Exception
+//	{
+//		dao.update(board);
+//	}
+//	
+//	@Override
+//	public void remove(Long boardNo) throws Exception
+//	{
+//		dao.delete(boardNo);
+//	}
+	
+	private final BoardMapper mapper;
 	
 	@Override
-	@Transactional(readOnly=true)
+	public void register(Board board) throws Exception
+	{
+		mapper.create(board);
+	}
+
+	@Override
 	public List<Board> list() throws Exception
 	{
-		return boardRepository.findAll(Sort.by(Direction.DESC, "boardNO"));
+		return mapper.list();
 	}
 	
 	@Override
-	@Transactional
-	public void register(Board board) throws Exception
+	public Board read(Long boardNo) throws Exception
 	{
-		boardRepository.save(board);
+		return mapper.read(boardNo);
+	}
+	
+	@Override
+	public void modify(Board board) throws Exception
+	{
+		mapper.update(board);
+	}
+	
+	@Override
+	public void remove(Long boardNo) throws Exception
+	{
+		mapper.delete(boardNo);
 	}
 }
