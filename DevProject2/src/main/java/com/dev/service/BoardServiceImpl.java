@@ -2,6 +2,7 @@ package com.dev.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dev.dao.mapper.BoardMapper;
@@ -47,7 +48,7 @@ public class BoardServiceImpl implements BoardService
 //	{
 //		dao.delete(boardNo);
 //	}
-	
+	@Autowired
 	private final BoardMapper mapper;
 	
 	@Override

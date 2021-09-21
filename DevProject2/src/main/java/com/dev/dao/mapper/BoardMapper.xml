@@ -20,11 +20,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="read" resultType="com.dev.domain.Board">
-		SELECT board_no AS boardNO,
+		SELECT board_no,
 			title,
 			content,
 			writer,
-			reg_date AS regDate
+			reg_date
 		FROM board
 		WHERE board_no = #{boardNo}
 	</select>
@@ -43,11 +43,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="list" resultType="com.dev.domain.Board">
 		<![CDATA[
-		SELECT board_no AS boardNo,
+		SELECT board_no,
 			title,
 			content,
 			writer,
-			reg_date AS regDate
+			reg_date
 		FROM board
 		WHERE board_no > 0
 		ORDER BY board_no DESC, reg_date DESC
